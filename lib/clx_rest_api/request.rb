@@ -1,3 +1,4 @@
+require "clx_rest_api/response"
 require "net/http"
 
 module CLXRestAPI
@@ -12,14 +13,10 @@ module CLXRestAPI
 
     def execute(body = {})
       response = http.request http_request(body)
-      parse response.body
+      Response.new(response)
     end
 
     private
-
-    def parse(response)
-      JSON.parse(response)
-    end
 
     def http
       @http ||= Net::HTTP.new(uri.host, uri.port)

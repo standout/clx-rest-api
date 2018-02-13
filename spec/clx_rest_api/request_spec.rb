@@ -36,14 +36,13 @@ module CLXRestAPI
           expect(WebMock).to have_requested(:get, "https://www.example.com?my_body=hello")
         end
 
-        it "parses the response" do
-          expected_response = { "test" => "test" }
-          stub_request(:get, "https://www.example.com")
-            .to_return(body: expected_response.to_json)
+        it "returns a response object" do
+          stub_request(:post, "https://www.example.com")
+            .to_return(body: { "test" => "test" }.to_json)
 
-          response = Request.new("https://www.example.com", method: :get).execute
+          response = Request.new("https://www.example.com", method: :post).execute
 
-          expect(response).to eq expected_response
+          expect(response).to be_an_instance_of CLXRestAPI::Response
         end
       end
 
@@ -80,14 +79,13 @@ module CLXRestAPI
                                            .with(body: body.to_json)
         end
 
-        it "parses the response" do
-          expected_response = { "test" => "test" }
+        it "returns a response object" do
           stub_request(:post, "https://www.example.com")
-            .to_return(body: expected_response.to_json)
+            .to_return(body: { "test" => "test" }.to_json)
 
           response = Request.new("https://www.example.com", method: :post).execute
 
-          expect(response).to eq expected_response
+          expect(response).to be_an_instance_of CLXRestAPI::Response
         end
       end
     end

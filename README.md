@@ -1,9 +1,6 @@
 # CLXRestAPI
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/clx_rest_api`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
+Made for creating easy integration with the CLX Rest API.
+You can find their API documentation [here](https://www.clxcommunications.com/docs/sms/http-rest.html).
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -19,6 +16,17 @@ And then execute:
 Or install it yourself as:
 
     $ gem install clx_rest_api
+
+## Configuration
+To use the API you need a service plan id and a token.
+Use the configuration block to set these.
+
+```ruby
+CLXRestAPI.configure do |config|
+  config.service_plan_id = "my_service_plan_id"
+  config.api_token = "my_api_token"
+end
+```
 
 ## Usage
 

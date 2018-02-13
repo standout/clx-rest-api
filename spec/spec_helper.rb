@@ -11,4 +11,10 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  # Configure credentials for API
+  CLXRestAPI.configure do |config|
+    config.service_plan_id = "my_service_plan_id"
+    config.api_token = "my_api_token"
+  end
 end

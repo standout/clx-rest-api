@@ -5,11 +5,10 @@ module CLXRestAPI
   class Client
     extend EndpointDSL
 
-    define_endpoint :send_batch_message, :post, "/xms/v1/:service_plan_id/batches"
+    define_endpoint :send_batch_message, :post, "/batches"
+    define_endpoint :retrieve_delivery_report, :get, "/batches/:batch_id/delivery_report"
 
-    def initialize(config = ::CLXRestAPI.config)
-      @service_plan_id = config.service_plan_id
-      @api_token = config.api_token
+    def initialize(config = CLXRestAPI.config)
       @config = config
     end
   end

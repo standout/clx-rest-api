@@ -4,7 +4,8 @@ module CLXRestAPI
   class Request
     attr_reader :uri
 
-    def initialize(uri, method: :get)
+    def initialize(uri, method: :get, config: CLXRestAPI.config)
+      @config = config
       @method = method
       @uri = URI(uri)
     end
@@ -34,11 +35,14 @@ module CLXRestAPI
 
     def get_request(body)
       @uri.query = URI.encode_www_form(body)
-      Net::HTTP::Get.new(@uri)
+      Net::HTTP::Get.new(@uri).tap do |req|
+        req["Authorization"] = "Bearer #{@config.api_token}"
+      end
     end
 
     def post_request(body)
       Net::HTTP::Post.new(@uri).tap do |req|
+        req["Authorization"] = "Bearer #{@config.api_token}"
         req.content_type = "application/json"
         req.body = body.to_json
       end

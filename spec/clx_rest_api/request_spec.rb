@@ -5,6 +5,17 @@ module CLXRestAPI
   RSpec.describe Request do
     describe "#execute" do
       context "when get request" do
+        it "sets the token in the header" do
+          token = CLXRestAPI.config.api_token
+          stub_request(:get, "https://www.example.com")
+            .to_return(body: { test: "test" }.to_json)
+
+          Request.new("https://www.example.com", method: :get).execute
+
+          expect(WebMock).to have_requested(:get, "https://www.example.com")
+                             .with(headers: { "Authorization" => "Bearer #{token}" })
+        end
+
         it "gets the provided url" do
           stub_request(:get, "https://www.example.com")
             .to_return(body: { test: "test" }.to_json)
@@ -37,6 +48,17 @@ module CLXRestAPI
       end
 
       context "when post request" do
+        it "sets the token in the header" do
+          token = CLXRestAPI.config.api_token
+          stub_request(:post, "https://www.example.com")
+            .to_return(body: { test: "test" }.to_json)
+
+          Request.new("https://www.example.com", method: :post).execute
+
+          expect(WebMock).to have_requested(:post, "https://www.example.com")
+                             .with(headers: { "Authorization" => "Bearer #{token}" })
+        end
+
         it "posts to the provided url" do
           stub_request(:post, "https://www.example.com")
             .to_return(body: { test: "test" }.to_json)

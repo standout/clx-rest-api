@@ -29,8 +29,26 @@ end
 ```
 
 ## Usage
+To use the API create an instance of the `CLXRestAPI::Client` class.
+You can send a request to an endpoint like this:
+```ruby
+client = CLXRestAPI::Client.new
+client.send_batch_message(params: {})
+```
 
-TODO: Write usage instructions here
+This returns a `CLXRestAPI::Response` instance.
+```ruby
+# Contains the response body parsed from JSON
+response.body
+
+# Contains a Net::HTTP response for further debugging
+response.original_response
+```
+
+## Available endpoints
+As of now these are the available endpoints:
+- :send_batch_messsage, docs: https://www.clxcommunications.com/docs/sms/http-rest.html#send-a-batch-message
+- :retrieve_delivery_report, docs: https://www.clxcommunications.com/docs/sms/http-rest.html#retrieve-a-delivery-report
 
 ## Development
 
@@ -47,7 +65,7 @@ define_endpoint :my_endpoint, :get, "/my_url/:my_param/
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/clx_rest_api.
+Bug reports and pull requests are welcome on GitHub at https://github.com/standout/clx_rest_api.
 
 ## License
 

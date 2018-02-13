@@ -1,3 +1,7 @@
+require "clx_rest_api/uri_interpretation"
+require "clx_rest_api/request"
+require "ostruct"
+
 module CLXRestAPI
   module EndpointDSL
     def define_endpoint(name, method, uri)

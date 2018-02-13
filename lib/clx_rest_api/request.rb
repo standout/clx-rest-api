@@ -1,5 +1,7 @@
 require "clx_rest_api/response"
+require "net/https"
 require "net/http"
+require "json"
 
 module CLXRestAPI
   class Request

@@ -1,4 +1,5 @@
 require "bundler/setup"
+require "webmock/rspec"
 require "clx_rest_api"
 
 RSpec.configure do |config|

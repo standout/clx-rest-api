@@ -37,10 +37,10 @@ module CLXRestAPI
         end
 
         it "returns a response object" do
-          stub_request(:post, "https://www.example.com")
+          stub_request(:get, "https://www.example.com")
             .to_return(body: { "test" => "test" }.to_json)
 
-          response = Request.new("https://www.example.com", method: :post).execute
+          response = Request.new("https://www.example.com", method: :get).execute
 
           expect(response).to be_an_instance_of CLXRestAPI::Response
         end

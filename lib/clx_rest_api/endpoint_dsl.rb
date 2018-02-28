@@ -8,7 +8,7 @@ module CLXRestAPI
       define_method(name) do |args = {}|
         uri = URIInterpretation.new(uri, OpenStruct.new(args), config: @config).to_s
         request = CLXRestAPI::Request.new(uri, method: method, config: @config)
-        request.execute(args[:params])
+        request.execute(args[:params] || {})
       end
     end
   end

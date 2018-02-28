@@ -21,5 +21,14 @@ module CLXRestAPI
 
       expect(response.body).to eq response_hash
     end
+
+    it "returns an empty hash if parse error" do
+      original_response = double("HTTPOK")
+      allow(original_response).to receive(:body).and_return('')
+
+      response = Response.new(original_response)
+
+      expect(response.body).to eq({})
+    end
   end
 end

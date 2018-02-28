@@ -8,6 +8,8 @@ module CLXRestAPI
 
     def body
       JSON.parse(@original_response.body)
+    rescue JSON::ParserError
+      {}
     end
   end
 end

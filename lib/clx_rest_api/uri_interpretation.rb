@@ -16,7 +16,7 @@ module CLXRestAPI
     private
 
     def param_regex
-      /(?<=\/):(\w*)/
+      /(?<=\/):([^\/]*)/
     end
 
     def retrieve_param(param)
